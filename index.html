@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./Assets/Figma-Favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Copy by L. Giro</title>
+</head>
+
+<body>
+  <header>
+    <div class="profile_container">
+      <img id="icon_nav" src="./Assets/Logo-Figma.svg" alt="Figma_Logo">
+      <div class="profile_info">
+        <h3>Giro Luca</h3>
+        <p>co.giro.luca@gmail.com</p>
+      </div>
+      <img id="icon_nav" src="./Assets/Arrow Down Menu.svg" alt="Arrow_Select_Menu">
+    </div>
+    <div class="search_container">
+      <search class="search_box">
+        <img id="icon_nav" src="./Assets/Search.svg" alt="Search_Icon">
+        <input type="text" placeholder="Search files, teams, or people">
+      </search>
+    </div>
+    <div class="mini_profile_right">
+      <nav>
+        <img id="icon_nav" src="./Assets/Network.svg" alt="Network_Icon">
+        <h3>Explore Community</h3>
+      </nav>
+      <div class="uppercase_profile">
+        <img id="icon_nav" src="./Assets/Notification.svg" alt="Notification_Icon">
+        <span>G</span>
+        <img id="icon_nav" src="./Assets/Arrow Down Menu.svg" alt="Arrow_Select_Menu2">
+      </div>
+    </div>
+  </header>
+  <aside>
+    <section class="menu">
+      <span>
+        <img src="./Assets/Recent.svg" alt="Recent_Icon">
+        <h3>Recents</h3>
+      </span>
+      <span>
+        <img src="./Assets/Draft.svg" alt="Draft_Icon">
+        <h3>Drafts</h3>
+      </span>
+      <div class="line"></div>
+      <article class="plan_content">
+        <img src="./Assets/Upload.svg" alt="Upload_Icon">
+        <p>Ready to go beyond this free plan? Upgrade for premium features.</p>
+        <button>View plans</button>
+      </article>
+    </section>
+    <section class="favorite_files">
+      <img src="./Assets/Toogle.svg" alt="Toggle_Icon">
+      <h4>Favorite files</h4>
+      <p>Hover over any file and click the star to add it here</p>
+    </section>
+    <section class="teams">
+      <img src="./Assets/Toogle.svg" alt="Toggle_Icon">
+      <h4>Teams</h4>
+      <ul>
+        <img src="./Assets/Green Square.svg" alt="Square_Icon">
+        <li>Giro Luca's team</li>
+        <button class="free_button">Free</button>
+        <img src="./Assets/Add_more.svg" alt="Plus1_Add_Iconp">
+        <img src="/Assets/Team Project.svg" alt="Team_Project_Icon">
+        <li>Team project</li>
+        <img src="./Assets/Add_more.svg" alt="Plus2_Add_Iconp">
+        <img src="./Assets/Create_new_team.svg" alt="Add_Team_Icon">
+        <li>Create new team</li>
+      </ul>
+    </section>
+  </aside>
+  <main>
+    <nav>
+      <h3>Recently viewed</h3>
+      <div class="new_file_container">
+        <div>
+          <img src="./Assets/Design-FIle.png" alt="File_Design">
+          <div class="text_description">
+            <h4>New design file</h4>
+            <p>Design and prototype</p>
+          </div>
+          <img src="./Assets/Add_more.svg" alt="More_Icon">
+        </div>
+        <div>
+          <img src="./Assets/FigJam-File.png" alt="File_FigJam">
+          <div class="text_description">
+            <h4>New FigJam file</h4>
+            <p>Whiteboard and diagram</p>
+          </div>
+          <img src="./Assets/Add_more.svg" alt="More_Icon">
+        </div>
+        <div>
+          <img src="Assets/Import.svg" alt="Import_Icon">
+          <div class="text_description">
+            <h4>Import file</h4>
+            <p>Bring in files from other tools</p>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section>
+      <article class="figjam_container">
+        <div class="fig_text_menu">
+          <h3>Explore FigJam templates</h3>
+          <p>See all</p>
+          <span class="line_separator_figjam"></span>
+          <img src="./Assets/Create_new_team.svg" alt="Close_FigJam_Menu">
+        </div>
+        <div class="list_template">
+          <div>
+            <img src="./Assets/Fig1.png" alt="Diagram_Basics">
+            <h4>Diagram Basics</h4>
+          </div>
+          <div>
+            <img src="./Assets/Fig2.png" alt="Daily_Sync_Template">
+            <h4>Daily Sync Template</h4>
+          </div>
+          <div>
+            <img src="./Assets/Fig3.png" alt="Meeting_Agenda">
+            <h4>Team meeting agenda</h4>
+          </div>
+          <div>
+            <img src="./Assets/Fig4.png" alt="User_Persona">
+            <h4>User persona</h4>
+          </div>
+          <div>
+            <img src="./Assets/Fig5.png" alt="Empathy_Map">
+            <h4>Empathy map</h4>
+          </div>
+          <div>
+            <img src="./Assets/Fig6.png" alt="Businees_Model_Canvas">
+            <h4>Business model canvas</h4>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section>
+      <nav>
+        <div class="select_div">
+          <div class="filter">
+            <span>Filter:</span>
+            <select name="Files" id="Files">
+              <option value="All files">All files</option>
+              <option value="Design files">Design files</option>
+              <option value="FigJam files">FigJam files</option>
+              <option value="Prototypes">Prototypes</option>
+            </select>
+            <img src="./Assets/Arrow Down Menu.svg" alt="Arrow_Select_Icon">
+          </div>
+          <div class="sort">
+            <span>Sort:</span>
+            <select name="Sort" id="Sort">
+              <optgroup label="Sort by">
+                <option value="Alphabetical">Alphabetical</option>
+                <option value="Date created">Date created</option>
+                <option value="Last viewed">Last viewed</option>
+              </optgroup>
+              <optgroup label="Order">
+                <option value="Order first">Order first</option>
+                <option value="Newest first">Newest first</option>
+              </optgroup>
+            </select>
+            <img src="./Assets/Arrow Down Menu.svg" alt="Arrow_Select_Icon">
+          </div>
+        </div>
+        <div class="select_icons">
+          <img src="./Assets/Filter Cubes.svg" alt="Filter_Grid_Icon">
+          <img src="./Assets/Filter List.svg" alt="Filter_List_Icon">
+        </div>
+      </nav>
+      <article class="library">
+        <div class="projects">
+          <div class="image_project_container">
+            <img src="./Assets/Lib1.png" alt="T_Library">
+          </div>
+          <div class="project_description">
+            <img src="./Assets/Design-FIle.png" alt="Design_Icon">
+            <div class="text_description">
+              <h4>Giro Luca's team library</h4>
+              <p>In Team project · Edited 5 days ago</p>
+            </div>
+          </div>
+        </div>
+        <div class="projects">
+          <div class="image_project_container">
+            <img src="./Assets/Lib2.png" alt="FigJam Basics">
+          </div>
+          <div class="project_description">
+            <img src="./Assets/FigJam-File.png" alt="FigJam_Icon">
+            <div class="text_description">
+              <h4>FigJam Basics</h4>
+              <p>In Drafts · Edited 5 days ago</p>
+            </div>
+          </div>
+        </div>
+        <div class="projects">
+          <div class="image_project_container">
+            <img id="imgthree" src="./Assets/Lib3.png" alt="Figma Basics">
+          </div>
+          <div class="project_description">
+            <img src="./Assets/Design-FIle.png" alt="Design_Icon">
+            <div class="text_description">
+              <h4>Figma Basics</h4>
+              <p>In Drafts · Edited 5 days ago</p>
+            </div>
+          </div>
+      </article>
+    </section>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,909 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+:root {
+
+  /* Header Colors */
+
+  --background-header: #2c2c2c;
+  --background-search: #383838;
+  --line-separator: #444444;
+  --white-font: #ffffff;
+  --icon-top-right-background: #f24822;
+
+  /* Aside Colors */
+
+  --aside-line-separator: #e6e6e6;
+  --upload-background: #f5f5f5;
+  --green-square: #15ae5c;
+  --free-button-background: #f2f9ff;
+  --free-button-font: #0d99ff;
+
+  /* Main Colors */
+
+  --fig-jam-background: #f5f5f5da;
+  --use-template-button: #9b4dff;
+  --see-all-text: #007be5;
+  --filters-text-grey: #0000004d;
+  --filters-icon-selected: #0d99ff;
+  --background-color-figma-basics: #e5e5e5;
+}
+
+/* The only way I found to hide all the scroll bars; horizontal and vertical */
+/* Changes in <main> container */
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+/* Header Container */
+
+/* Icons Config => Filter BLACK to WHITE for SVG icons */
+
+#icon_nav {
+  filter: invert(100%) sepia(0%) saturate(7494%) hue-rotate(173deg) brightness(103%) contrast(99%);
+}
+
+/* Header */
+
+/* Display flex in the whole header to arrange horizontally the 3 main containers => 
+   Space between to make the left and right profile section stick on the edges, the flex-grow: 1 will make the search bar stick to the left! */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 100vw; */
+  height: 50px;
+  color: var(--white-font);
+  background-color: var(--background-header);
+}
+
+
+/* Top Left (1/3) */
+
+/* Main Flex Container */
+
+.profile_container {
+  display: flex;
+  position: relative;
+  gap: 5px;
+  min-width: 241px;
+  padding: 5px 10px;
+  font-size: 0.7rem;
+}
+
+.profile_info {
+  padding: 0 5px;
+}
+
+/* Fonts Config */
+
+.profile_info > h3 {
+  font-size: 12px;
+}
+
+.profile_info > p {
+  font-size: 9px;
+  margin-top: 3px;
+}
+
+/* Arrow Icon Size and Right Position =>
+   Didn't want to use a div, instead : attribute selector test with absolute position */
+
+[alt="Arrow_Select_Menu"] {
+  width: 0.5rem;
+  position: absolute;
+  right: 20px;
+  top: 17px;
+}
+
+
+/* Center Header (2/3) */
+
+/* Main Flex Container */
+
+/* Flex-grow: 1 => Makes the whole container stick to the LEFT; display:flex and align-items makes affect the content of it! */
+/* Min-width to the search container to make it responsive */
+/* The height inherit is for the little border separator detail; so the border reach the whole header */
+
+.search_container {
+  min-width: 235px;
+  height: inherit;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid var(--line-separator);
+}
+
+/* Search Box */
+
+.search_box {
+  display: flex;
+  width: 385px;
+  height: 40px;
+  margin: 0 15px;
+  border-radius: 6px;
+  background-color: var(--background-search);
+}
+
+/* Search Icon */
+
+.search_box > img {
+  width: 1rem;
+  margin: 5px 14px 5px 18px;
+}
+
+/* 100% width, overflow: hidden & text-overflow: ellipsis => For responsive effect, just as in the example */
+
+.search_box > input {
+  width: 100%;
+  padding: 5px 0px;
+  border: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+  background-color: var(--background-search);
+}
+
+
+/* Just a funny thing wanted to try a weird combination selector, and it works! */
+/* NOT ACTIVATED => NO EFFECT */
+
+input[placeholder^="Sea"]::placeholder {
+  /* color: red; */
+}
+
+
+/* Top Right (3/3) */
+/* The height are the same as the header, so the border separator will reach the whole header */
+
+/* Main Flex Container */
+
+.mini_profile_right {
+  min-width: 293px;
+  display: flex;
+  align-items: center;
+  height: inherit;
+}
+
+/* Explore Community (2 elements) */
+
+.mini_profile_right > nav {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-right: 15px;
+  border-right: 1px solid var(--line-separator);
+
+}
+
+/* The word-break property makes the text break when responsive just as in the example */
+
+.mini_profile_right > nav > h3 {
+  word-break: normal;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* Profile Resume (3 elements) */
+
+.uppercase_profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-right: 15px;
+}
+
+/* Notification Icon */
+
+.uppercase_profile > :first-child {
+  padding: 0 11px;
+}
+
+/* Circle Profile Icon */
+
+.uppercase_profile > span {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  border-radius: 50%;
+  border: 0.5px solid #f8957f;
+  background-color: var(--icon-top-right-background);
+}
+
+
+
+/* Aside */
+
+
+/* Main Flex Container */
+
+/* The height needs to be a fix one for the container line to go till the end */
+
+aside {
+  display: flex;
+  flex-direction: column;
+  width: 242px;
+  min-height: 100vh;
+  font-size: 0.7rem;
+  border-right: 1px solid var(--aside-line-separator);
+}
+
+
+/* First Top Part (1/3) */ 
+/* Important => Better to set padding to elements instead of main container */
+
+
+/* Main Container */
+
+/* Position relative to the container to position the grey line separator above */
+/* The height of the container shouldn't be a fix one... content should make it grow */
+
+.menu {
+  position: relative;
+  height: 255px;
+  margin-top: 9px;
+}
+
+/* Docs */ 
+
+.menu > span {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 15px;
+  margin-bottom: 5px;
+  font-size: 9px;
+}
+
+/* Line Separator Div; couldn't find a better way to do it */
+/* Position absolute to place it correctly */
+
+div.line {
+  position: absolute;
+  width: 209px;
+  height: 1px;
+  top: 79px;
+  left: 15px;
+  background-color: var(--aside-line-separator)
+}
+
+/* Upload Plan */
+/* Line-Height 1rem to make the text breath a bit more */
+
+.plan_content {
+  width: 209px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+  padding: 15px;
+  margin: 27px 15px 0px;
+  line-height: 1rem;
+  text-align: center;
+  background-color: var(--upload-background);
+  border-radius: 10px;
+}
+
+.plan_content > button {
+  width: 100%;
+  padding: 9px 0px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  color: var(--white-font);
+  background-color: var(--free-button-font);
+}
+
+/* Favorites Files (2/3) */
+
+/* Little sparkling realizations: => 
+    - No padding in main container.
+    - No over use of display flex; use the margin and padding of the elements themselves, line-height, vertical-align, etc.
+    - No need to set the width or height of elements, they will fill the whole container, or use padding and margin */
+
+.favorite_files {
+  position: relative;
+  height: 90px;
+  border-top: 1px solid var(--aside-line-separator);
+  border-bottom: 1px solid var(--aside-line-separator);
+}
+
+/* Text config and toggle position */
+
+.favorite_files > img {
+  position: absolute;
+  top: 19px;
+  left: 6px;
+}
+
+/* Set height to 30px just as the first section above (.menu > span) totally useless :) */
+/* I think there is an over use of padding and margin, could be better */
+
+.favorite_files > h4 {
+  height: 30px;
+  font-weight: 600;
+  padding: 10px 18px;
+  margin: 6px 0px; 
+}
+
+.favorite_files > p {
+  height: 30px;
+  padding: 0 18px;
+  opacity: 0.5;
+}
+
+/* Toggle to grey with the =^ (starts with) selector */
+/* This is going to set the opacity to ALL toggles to 0.5 */
+
+[alt^="Tog"] {
+  opacity: 0.5;
+}
+
+
+/* Teams Section (3/3) */
+
+/* Teams Content */
+/* Main position for ALL ICON position */
+
+.teams {
+  position: relative;
+}
+
+.teams > h4 {
+  height: 30px;
+  font-weight: 600;
+  padding: 10px 18px;
+  margin-top: 6px;
+}
+
+/* Toggle position */
+
+.teams > img {
+  position: absolute;
+  top: 20px;
+  left: 6px;
+}
+
+/* Teams List */
+
+.teams > ul {
+  margin-top: 15px;
+}
+
+/* The padding makes the list-style-type: not appear, so I removed it */
+
+.teams > ul > li {
+  height: 30px;
+  padding: 0 43px;
+  /* list-style-type: none; */
+}
+
+
+/* Icons sizes and config => No position yet */
+
+/* Selector Specificity problem between two selector (0.1.1) VS (0.2.1) => CORRECTED */
+/* Whole value Selector => Square Icon Filter to green color #15ae5c, not quite the exact one */
+
+[alt*="Square"] {
+  width: 10px;
+  border-radius: 1px;
+  filter: invert(50%) sepia(99%) saturate(395%) hue-rotate(95deg) brightness(88%) contrast(90%);
+}
+
+/* Created little padding test in "+" Icon, to make it like a "button" (bigger and square) */
+
+[alt$="Iconp"] {
+  padding: 10px;
+}
+
+/* Ridiculous way to make the "---"(three rows) icon smaller */
+
+[alt^="Team"] {
+  width: 6px;
+  height: 7px;
+  object-fit: cover;
+}
+
+
+
+/* Icon Position and Free Button Layout */
+
+
+[alt*="Square"] {
+  position: absolute;
+  top: 53px;
+  left: 23px;
+}
+
+/* Box-sizing: content-box to make the margin, border of the button not affect the width of the button */
+
+.free_button {
+  box-sizing: content-box;
+  position: absolute;
+  top: 49px;
+  left: 143px;
+  width: 30px;
+  height: 16px;
+  font-size: 9px;
+  color: var(--free-button-font);
+  background-color: var(--free-button-background);
+  border: none;
+  border-radius: 3px;
+}
+
+
+[alt*="Plus1"] {
+  position: absolute;
+  top: 41px;
+  right: 18px;
+}
+
+[alt^="Team"] {
+  position: absolute;
+  top: 85px;
+  left: 6px;
+}
+
+[alt*="Plus2"] {
+  position: absolute;
+  top: 72px;
+  right: 18px;
+}
+
+[alt^="Add"] {
+  position: absolute;
+  top: 110px;
+  left: 20px;
+}
+
+
+/* Main */
+
+/* Main Container Position and Size */
+/* Overflow: Auto to make the container scrollable, just like in the example => Header not affected! */
+
+main {
+  position: absolute;
+  top: 50px;
+  left: 242px;
+  height: calc(100vh - 50px);
+  overflow: auto;
+}
+
+
+/* Header Nav (1/3) */
+
+/* Sticky position with z-index to make the nav stick to the top of the page when scrolling the main content */
+/* Background color important for visual sticky scroll like example */
+
+main > nav {
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  background-color: var(--white-font);
+}
+
+/* Giving the height of the content or the line-height is quite the same... vertical-align useless */
+
+main nav > h3 {
+  /* height: 50px; */
+  padding-left: 30px;
+  line-height: 50px;
+  /* vertical-align: middle; */
+  font-size: 13px;
+  font-weight: 500;
+  border-bottom: 1px solid var(--aside-line-separator);
+}
+
+
+/* New File and Import Container */
+
+/* Grid to make the container responsive => Clear difference between auto-fill and auto-fit */
+/* Margin or padding here.. */
+
+.new_file_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 30px;
+  padding: 25px 30px;
+  /* margin: 25px 30px; */
+}
+
+/* Grid Items (3 elements) */
+
+/* The Item inside a grid display don't need a fixed width, grid will take care of that (minmax) */
+/* Flex with space-between and flex-grow combination again <3 */
+
+.new_file_container > div {
+  /* width: 315px; */
+  /* min-width: 270px; */
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--aside-line-separator);
+  border-radius: 5px;
+}
+
+/* Text Description */
+
+/* Flex-Grow property on the text container */
+
+.text_description {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 5px;
+  padding-left: 8px;
+}
+
+/* Font config */
+
+.text_description > h4 {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.text_description > p {
+  margin: 1px 0 3px 0;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/* Icons Config */
+
+[alt^="Imp"] {
+  margin: 0 11px;
+}
+
+img[alt^="More"] {
+  margin: 0 10px;
+}
+
+
+/* Explore FigJam Templates (2/3) */
+
+/* Main Container */
+
+/* Use of the 3 values (padding) like the original example => TOP - LEFT & RIGHT - BOTTOM */
+
+.figjam_container {
+  margin: 0 30px;
+  padding: 15px 25px 25px;
+  border-radius: 7px;
+  background-color: var(--fig-jam-background);
+}
+
+/* Title and menu text */
+
+/* Text Menu Container */
+
+.fig_text_menu {
+  margin: 10px 0px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fig_text_menu > h3 {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.fig_text_menu > p {
+  position: absolute;
+  right: 50px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--see-all-text);
+}
+
+/* Grey Tiny Line Separator and Position */
+
+.fig_text_menu > span {
+  position: absolute;
+  right: 32px;
+  width: 1px;
+  height: 33px;
+  background-color: var(--aside-line-separator);
+}
+
+/* Close Icon */
+/* Same Icon as the "+" icon but rotated 45deg with the transform-box and transform-origin properties => X Icon */
+
+.fig_text_menu > img {
+  width: 18px;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: rotate(45deg);
+  opacity: 0.7;
+}
+
+
+/* Templates Main Container */
+
+/* The grid-template-rows set the number of rows to 1 and the grid-auto-rows to 0 to make the grid responsive in one row only */
+/* The overflow hidden is to hide the others rows when the grid is responsive =>
+Difference from Padding and Vertical Gap ( 0 25px ) really obvious here */
+
+.list_template {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  grid-template-rows: 1fr;
+  grid-auto-rows: 0;
+  overflow-y: hidden;
+  gap: 0 25px;
+  margin-top: 25px;
+  /* padding: 15px 0px; */
+}
+
+/* Image config and title */
+/* Border-radius directly on the image; object-fit useless here because there is no size for the image container =>
+   Useless class => (.image_container) => DELETED FROM HTML */
+
+.list_template > div img {
+  width: 100%;
+  border-radius: 7px;
+  /* object-fit: cover; */
+}
+
+.list_template h4 {
+  margin: 12px 0px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+
+/* Project Section (3/3) */
+
+/* Filter Nav Main Container */
+
+section > nav {
+  position: relative;
+  margin: 30px 30px 0px;
+}
+
+/* Select Element groups container */
+
+.select_div {
+  padding-right: 15px;
+  max-width: 95%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--filters-text-grey);
+}
+
+/* Space from filter and sort : 5px */
+
+.select_div span {
+  margin-right: 5px;
+}
+
+/* -webkit-appearance: none; to remove the default arrow from <select> */
+/* user-select: none; to remove the default text selection */
+/* width: fit-content to bring the arrow as close as possible to the text; and overflow hidden not doing what i wanted => DELETED */
+
+.select_div select {
+  -webkit-appearance: none;
+  user-select: none;
+  max-width: 95%;
+  font-size: 11px;
+  /* overflow: hidden; */
+  border: none;
+}
+
+
+/* Icons (Right part) */ 
+
+.select_icons {
+  position: absolute;
+  top: -5px;
+  right: 0;
+}
+
+.select_icons > img {
+  margin-right: 2px;
+  width: 23px;
+  height: 23px;
+  padding: 5px;
+  border: 1px solid var(--aside-line-separator);
+  border-radius: 4px;
+}
+
+/* Projects Main Container */
+
+/* Created the two rows, the one under empty to create more scroll space, just like the original example */
+
+.library {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  grid-template-rows: 1fr 1fr;
+  gap: 35px;
+  padding: 23px 30px;
+  margin-top: 12px;
+}
+
+/* Project Container */
+/* Height to the container to try to replicate original size */
+
+.projects {
+  height: 240px;
+  border: 1px solid var(--aside-line-separator);
+  border-radius: 6px;
+}
+
+/* Div Container of the image */
+
+
+.image_project_container {
+  height: 76%;
+  /* overflow: hidden; */
+}
+
+/* Here the object-fit: cover; is useful to make the image fit the desired size of the principal container */
+
+.image_project_container > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Project Description => Used same class for text description (.text_description) for font and size as above */
+
+.project_description {
+  display: flex;
+  margin-top: 6px;
+  padding: 0 10px;
+}
+
+/* Last Image Project */
+/* Used an Id just because. */
+/* Object-fit: contain; to make the image fit the container as in the example; and background color */
+
+#imgthree {
+  background-color: var(--background-color-figma-basics);
+  object-fit: contain;
+}
+
+
+/* Media Queries */
+
+/* Mobile Responsive */
+
+@media only screen and (max-width: 645px) {
+
+  /* Header */
+
+.search_container {
+    min-width: 200px;
+  }
+
+  .profile_info {
+    display: none;
+  }
+
+  .profile_container {
+    min-width: 80px;
+    display: inline;
+  }
+
+  .mini_profile_right {
+    padding-right: 10px;
+  }
+
+  /* Main */
+
+  main {
+    position: absolute;
+    left: 0;
+  }
+
+  main > nav > h3 {
+    padding-left: 48px;
+  }
+
+  main > nav p {
+    display: none;
+  }
+
+  /* Added the Burger Menu with the ::before pseudo-element - mouaha */
+
+  main > nav > h3::before {
+    content: url(./Assets/Hamburger\ Menu\ Responsive.svg);
+    position: absolute;
+    left: 17px;
+    top: 4px;
+  }
+
+
+  .new_file_container div:last-child {
+    display: none;
+  }
+
+  .figjam_container {
+    display: none;
+  }
+
+  /* Filter Nav */
+
+  section > nav {
+    padding-right: 30px;
+  }
+
+  /* Aside */
+
+  aside {
+    display: none;
+  }
+
+}
+
+/* Tablet Responsive */
+
+@media only screen and (min-width: 646px) and (max-width: 1024px) {
+
+    /* Header */
+
+/* Flex-grow is literally the solution for everything */
+
+.profile_container {
+  flex-grow: 1;
+  min-width: 200px;
+}
+
+.mini_profile_right {
+  padding-right: 10px;
+}
+
+/* Main */
+
+main > nav > h3::after {
+  content: url(./Assets/Import.svg);
+  position: absolute;
+  right: 17px;
+  top: 4px;
+}
+
+main > nav p {
+  display: none;
+}
+
+.new_file_container div:last-child {
+  display: none;
+}
+
+.figjam_container {
+  display: none;
+}
+
+ /* Filter Nav */
+
+ section > nav {
+  padding-right: 30px;
+}
+
+
+}

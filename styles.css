@@ -34,6 +34,10 @@
   --filters-text-grey: #0000004d;
   --filters-icon-selected: #0d99ff;
   --background-color-figma-basics: #e5e5e5;
+
+  /* Footer Colors */
+
+  --footer-help-background: #1e1e1e;
 }
 
 /* The only way I found to hide all the scroll bars; horizontal and vertical */
@@ -786,6 +790,138 @@ section > nav {
 #imgthree {
   background-color: var(--background-color-figma-basics);
   object-fit: contain;
+}
+
+
+/* Footer */
+
+/* Help Button */
+
+.help {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 20px;
+  right: 26px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--footer-help-background);
+}
+
+.help > p {
+  font-size: 19px;
+  font-weight: 100;
+  color: white;
+}
+
+/* Checkbox behind the button; for the :checked action Help button */
+
+.help > input {
+  position: absolute;
+  opacity: 0;
+  width: 35px;
+  height: 35px;
+}
+
+/* Hover text "Help And Resources" */
+
+.help span:first-of-type {
+  position: fixed;
+  bottom: 70px;
+  right: 26px;
+  width: 125px;
+  padding: 8px 10px;
+  font-size: 11px;
+  text-align: center;
+  color: white;
+  background-color: var(--footer-help-background);
+  border-radius: 2px;
+  display: none;
+}
+
+/* Clip-path to create the dialogue triangle */
+
+.clip_help {
+  position: absolute;
+  bottom: 40px;
+  right: 16px;
+  width: 30%;
+  height: 30%;
+  clip-path: polygon(50% 57%, 0 0, 100% 0);
+  background-color: var(--footer-help-background);
+  display: none;
+
+}
+
+/* Help Menu */
+
+.help_menu {
+  position: fixed;
+  bottom: 70px;
+  right: 26px;
+  width: 145px;
+  height: 310px;
+  font-size: 12px;
+  text-align: center;
+  color: white;
+  background-color: var(--footer-help-background);
+  border-radius: 2px;
+  display: none;
+}
+
+/* Menu Text Configuration */
+
+.forum {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 13px 15px;
+  gap: 10px;
+  margin-bottom: 10px;
+  border-bottom: 0.1px solid rgba(128, 128, 128, 0.212);
+}
+
+.contact {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 0px 15px 13px;
+  gap: 10px;
+  margin-bottom: 10px;
+  border-bottom: 0.1px solid rgba(128, 128, 128, 0.212);
+}
+
+/* With the .p_reset class, both paragraphs were being affected, so I had to use the + selector to select only the second one */
+
+.p_reset {
+  text-align: left;
+  padding: 0px 15px 12px;
+  border-bottom: 0.1px solid rgba(128, 128, 128, 0.212);
+}
+
+/* Last paragraph of the list padding... */
+
+.p_reset + p {
+  padding-top: 10px;
+}
+
+
+/* Menu "Actions" => :hover for message, and check/uncheck for the menu */
+
+.help:hover span {
+  display: block;
+}
+
+.check_help:checked ~ .help_menu{
+  display: block;
+}
+
+.check_help:checked ~ .clip_help{
+  display: block;
 }
 
 

@@ -6,6 +6,7 @@
   box-sizing: border-box;
   font-family: 'Inter', sans-serif;
   font-weight: 400;
+  cursor: default;
 }
 
 :root {
@@ -34,6 +35,7 @@
   --filters-text-grey: #0000004d;
   --filters-icon-selected: #0d99ff;
   --background-color-figma-basics: #e5e5e5;
+  --favorite-star-color: #ffcd29;
 
   /* Footer Colors */
 
@@ -552,6 +554,7 @@ main nav > h3 {
 /* Text Description */
 
 /* Flex-Grow property on the text container */
+/* white-space: nowrap to keep the first block description in one line when responsive! */
 
 .text_description {
   display: flex;
@@ -559,6 +562,7 @@ main nav > h3 {
   flex-grow: 1;
   gap: 5px;
   padding-left: 8px;
+  white-space: nowrap;
 }
 
 /* Font config */
@@ -737,9 +741,10 @@ section > nav {
   border-radius: 4px;
 }
 
+
 /* Projects Main Container */
 
-/* Created the two rows, the one under empty to create more scroll space, just like the original example */
+/* Created two rows, the one under empty to create more scroll space, just like the original example */
 
 .library {
   display: grid;
@@ -751,23 +756,26 @@ section > nav {
 }
 
 /* Project Container */
-/* Height to the container to try to replicate original size */
+
+/* Display flex only for the image container flex grow property to work */
 
 .projects {
-  height: 240px;
+  display: flex;
+  flex-direction: column;
+  height: 230px;
   border: 1px solid var(--aside-line-separator);
   border-radius: 6px;
-}
-
-/* Div Container of the image */
-
-
-.image_project_container {
-  height: 76%;
   /* overflow: hidden; */
 }
 
-/* Here the object-fit: cover; is useful to make the image fit the desired size of the principal container */
+
+/* Div Container of the image */
+
+.image_project_container {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
 
 .image_project_container > img {
   width: 100%;
@@ -775,22 +783,71 @@ section > nav {
   object-fit: cover;
 }
 
-/* Project Description => Used same class for text description (.text_description) for font and size as above */
-
-.project_description {
-  display: flex;
-  margin-top: 6px;
-  padding: 0 10px;
-}
-
-/* Last Image Project */
-/* Used an Id just because. */
-/* Object-fit: contain; to make the image fit the container as in the example; and background color */
+/* Last Block Image => Object-fit: contain; to make the image fit the container as in the example; + background color */
 
 #imgthree {
   background-color: var(--background-color-figma-basics);
   object-fit: contain;
 }
+
+
+/* Text Box => Used (.text_description) parameters from main > nav ; + these parameters */
+
+.project_description {
+  position: relative;
+  display: flex;
+  margin: 6px 0px;
+  padding: 0 10px;
+}
+
+
+/* Favorite Icon */
+
+/* Couldn't check the star icon behind the SVC icon, so I used Z-Index (boom baby) */
+
+.project_description input {
+  position: absolute;
+  right: 22px;
+  bottom: 16px;
+  z-index: 1;
+  opacity: 0;
+}
+
+
+svg {
+  margin: 12px 8px;
+  width: 21px;
+  height: 21px;
+  opacity: 0.4;
+  visibility: hidden;
+}
+
+
+/* "Actions" */ 
+
+.projects:hover svg {
+  visibility: visible;
+}
+
+.projects:hover {
+  box-shadow: 0 0 3px 0.5px var(--aside-line-separator);
+}
+
+/* Different box-shadow (down direction) for last box because of the grey background image */
+
+.projects:last-child:hover {
+  box-shadow: 0 1px 2px var(--aside-line-separator);
+}
+
+/* Star Click to Yellow */
+
+.star:checked ~ svg {
+  visibility: visible;
+  color: var(--favorite-star-color);
+  opacity: 1;
+  fill: var(--favorite-star-color);
+}
+
 
 
 /* Footer */
@@ -857,87 +914,54 @@ section > nav {
 
 /* Help Menu */
 
-.help_menu {
+.help-menu {
   position: fixed;
   bottom: 70px;
   right: 26px;
   width: 145px;
-  height: 310px;
   font-size: 12px;
-  text-align: center;
   color: white;
   background-color: var(--footer-help-background);
   border-radius: 2px;
+  cursor: default;
   display: none;
 }
 
+
 /* Menu Text Configuration */
 
+/* This part has been really tricky; understood the huge importance between => Naming a class with "_" and "-"
+   And the practical use of a group selector! */
 
-/* First Block : Help Center, Support Forum.. */
+/* Blocks */
 
-/* To make the blue :hover => no gap & no lateral padding on the container; it won't select the whole line */
-
-.forum {
+.forum, .contact, .p_last{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: start;
   padding: 8px 0px;
-  /* gap: 10px; */
   border-bottom: 0.1px solid rgba(128, 128, 128, 0.212);
 }
 
-.forum > p {
-  width: 145px;
-  line-height: 25px;
-  text-align: left;
-  padding-left: 13px;
-}
+/* Had to put the last <p> in a div, to be able to have the border-top displayed correctly */
 
-
-/* Second Block : Submit feedback, Ask the community.. */
-
-.contact {
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-  padding: 8px 0px;
-  /* gap: 10px; */
-  /* margin-bottom: 8px; */
-  border-bottom: 0.1px solid rgba(128, 128, 128, 0.212);
-}
-
-.contact > p {
-  width: 145px;
-  line-height: 25px;
-  text-align: left;
-  padding-left: 13px;
-}
-
-/* With the .p_reset class, both paragraphs were being affected, so I had to use the + selector to select only the second one */
-
-.p_reset {
-  display: block;
-  line-height: 25px;
-  text-align: left;
-  margin: 8px 0px 0px;
-  padding: 0px 13px;
-}
-
-/* Last paragraph of the list padding... */
-
-.p_reset + p {
-  position: absolute;
-  bottom: 8px;
-  right: 0;
-  width: 145px;
-  line-height: 25px;
-  text-align: left;
-  padding: 4px 13px 0px;
+.p_last {
   border-top: 0.1px solid rgba(128, 128, 128, 0.212);
 }
+
+
+/* Text */
+
+.help-menu p {
+  width: 145px;
+  line-height: 25px;
+  text-align: left;
+  padding-left: 13px;
+  /* margin: 8px 0px; */
+}
+
+.help-menu > p {
+  margin: 8px 0px;
+ }
 
 
 /* "Actions" => :hover for message, and check/uncheck for the menu */
@@ -946,7 +970,7 @@ section > nav {
   display: block;
 }
 
-.check_help:checked ~ .help_menu{
+.check_help:checked ~ .help-menu{
   display: block;
 }
 
@@ -954,7 +978,7 @@ section > nav {
   display: block;
 }
 
-.help_menu p:hover {
+.help-menu p:hover {
   background-color: var(--free-button-font);
 }
 

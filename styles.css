@@ -7,25 +7,29 @@
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   cursor: default;
+  user-select: none;
 }
 
 :root {
 
   /* Header Colors */
 
+  --hover-header: #111111;
   --background-header: #2c2c2c;
-  --background-search: #383838;
+  --background-search: #383838c2;
   --line-separator: #444444;
   --white-font: #ffffff;
   --icon-top-right-background: #f24822;
 
   /* Aside Colors */
 
+  --selected-background: #a8dbff50;
   --aside-line-separator: #e6e6e6;
-  --upload-background: #f5f5f5;
+  --upload-background: #f7f7f7;
+  --view-plans-button: #0e99ff;
   --green-square: #15ae5c;
   --free-button-background: #f2f9ff;
-  --free-button-font: #0d99ff;
+  --free-button-font: #0185e4;
 
   /* Main Colors */
 
@@ -36,6 +40,7 @@
   --filters-icon-selected: #0d99ff;
   --background-color-figma-basics: #e5e5e5;
   --favorite-star-color: #ffcd29;
+  --background-close-window: #dbd8d89f;
 
   /* Footer Colors */
 
@@ -65,11 +70,13 @@ body {
 /* Display flex in the whole header to arrange horizontally the 3 main containers => 
    Space between to make the left and right profile section stick on the edges, the flex-grow: 1 will make the search bar stick to the left! */
 
+/* The padding-right is to make the same visual "mistake" as in the example */
+
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* width: 100vw; */
+  padding-right: 13px;
   height: 50px;
   color: var(--white-font);
   background-color: var(--background-header);
@@ -81,6 +88,7 @@ header {
 /* Main Flex Container */
 
 .profile_container {
+  height: 100%;
   display: flex;
   position: relative;
   gap: 5px;
@@ -90,7 +98,7 @@ header {
 }
 
 .profile_info {
-  padding: 0 5px;
+  padding: 5px;
 }
 
 /* Fonts Config */
@@ -104,16 +112,27 @@ header {
   margin-top: 3px;
 }
 
-/* Arrow Icon Size and Right Position =>
-   Didn't want to use a div, instead : attribute selector test with absolute position */
+/* Arrow Position and Transition */
 
 [alt="Arrow_Select_Menu"] {
-  width: 0.5rem;
+  width: 9px;
   position: absolute;
   right: 20px;
-  top: 17px;
+  top: 21px;
+  transition: all 0.2s ease-in-out;
 }
 
+/* Actions */ 
+
+.profile_container:hover {
+  background-color: var(--hover-header);
+}
+
+.profile_container:hover [alt="Arrow_Select_Menu"] {
+  position: absolute;
+  right: 20px;
+  top: 25px;
+}
 
 /* Center Header (2/3) */
 
@@ -146,8 +165,9 @@ header {
 /* Search Icon */
 
 .search_box > img {
-  width: 1rem;
-  margin: 5px 14px 5px 18px;
+  padding: 12px 13px 12px 18px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 
 /* 100% width, overflow: hidden & text-overflow: ellipsis => For responsive effect, just as in the example */
@@ -160,15 +180,26 @@ header {
   text-overflow: ellipsis;
   border-top-right-radius: 7px;
   border-bottom-right-radius: 7px;
+  color: var(--white-font);
   background-color: var(--background-search);
+  caret-color: var(--white-font);
+  outline: none;
+  cursor: text;
 }
 
+/* Actions */
 
-/* Just a funny thing wanted to try a weird combination selector, and it works! */
-/* NOT ACTIVATED => NO EFFECT */
+/* Hover and :not => To avoid the hover effect when the input is focused */
 
-input[placeholder^="Sea"]::placeholder {
-  /* color: red; */
+.search_box:hover:not(:focus-within) input,
+.search_box:hover:not(:focus-within) img {
+  background-color: rgba(128, 128, 128, 0.13);
+}
+
+/* Focus */
+
+.search_box:focus-within {
+  outline: 0.6px solid var(--filters-icon-selected);
 }
 
 
@@ -185,15 +216,15 @@ input[placeholder^="Sea"]::placeholder {
 }
 
 /* Explore Community (2 elements) */
+/* The height inherit is for the little border separator detail */
 
 .mini_profile_right > nav {
   height: inherit;
   display: flex;
   align-items: center;
   gap: 9px;
-  padding-right: 15px;
+  padding: 0px 20px 0px 5px;
   border-right: 1px solid var(--line-separator);
-
 }
 
 /* The word-break property makes the text break when responsive just as in the example */
@@ -207,33 +238,71 @@ input[placeholder^="Sea"]::placeholder {
 /* Profile Resume (3 elements) */
 
 .uppercase_profile {
+  height: inherit;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-right: 15px;
 }
 
 /* Notification Icon */
 
-.uppercase_profile > :first-child {
-  padding: 0 11px;
+.uppercase_profile div {
+  width: 50px;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+}
+
+/* Profile Container */
+
+.uppercase_profile div:last-of-type {
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 75px;
+  padding-left: 17px;
 }
 
 /* Circle Profile Icon */
 
-.uppercase_profile > span {
+.uppercase_profile > div > span {
   width: 25px;
   height: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 8px;
   font-size: 12px;
   border-radius: 50%;
   border: 0.5px solid #f8957f;
   background-color: var(--icon-top-right-background);
 }
 
+/* Arrow Position and Transition */
+
+[alt="Last_Arrow"] {
+  width: 9px;
+  position: absolute;
+  right: 27px;
+  top: 21px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Actions */
+
+.mini_profile_right > nav:hover {
+  background-color: var(--hover-header);
+}
+
+.uppercase_profile div:hover {
+  background-color: var(--hover-header);
+}
+
+.uppercase_profile div:last-of-type:hover [alt="Last_Arrow"] {
+  position: absolute;
+  right: 27px;
+  top: 25px;
+}
 
 
 /* Aside */
@@ -270,14 +339,21 @@ aside {
 
 /* Docs */ 
 
+.menu span:first-of-type {
+  background-color: var(--selected-background);
+}
+
 .menu > span {
-  height: 30px;
+  height: 32px;
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 0 15px;
-  margin-bottom: 5px;
   font-size: 9px;
+}
+
+.menu span:last-of-type:hover {
+  background-color: var(--fig-jam-background);
 }
 
 /* Line Separator Div; couldn't find a better way to do it */
@@ -287,7 +363,7 @@ div.line {
   position: absolute;
   width: 209px;
   height: 1px;
-  top: 79px;
+  top: 78px;
   left: 15px;
   background-color: var(--aside-line-separator)
 }
@@ -302,7 +378,7 @@ div.line {
   align-items: center;
   gap: 13px;
   padding: 15px;
-  margin: 27px 15px 0px;
+  margin: 25px 15px 0px;
   line-height: 1rem;
   text-align: center;
   background-color: var(--upload-background);
@@ -310,21 +386,21 @@ div.line {
 }
 
 .plan_content > button {
-  width: 100%;
+  width: 97%;
   padding: 9px 0px;
   font-size: 1em;
   border: none;
   border-radius: 5px;
   color: var(--white-font);
-  background-color: var(--free-button-font);
+  font-weight: 500;
+  background-color: var(--view-plans-button);
 }
 
 /* Favorites Files (2/3) */
 
 /* Little sparkling realizations: => 
-    - No padding in main container.
-    - No over use of display flex; use the margin and padding of the elements themselves, line-height, vertical-align, etc.
-    - No need to set the width or height of elements, they will fill the whole container, or use padding and margin */
+    - No padding in main container for :hover selection visible blocks sizes, element should be the same size as the container.
+    - No over use of display flex; use the margin and padding of the elements themselves, line-height, vertical-align, etc. */
 
 .favorite_files {
   position: relative;
@@ -358,17 +434,20 @@ div.line {
 }
 
 /* Toggle to grey with the =^ (starts with) selector */
-/* This is going to set the opacity to ALL toggles to 0.5 */
+/* This is going to set to ALL toggles: Opacity to 0.5, display none and the :hover */
 
 [alt^="Tog"] {
   opacity: 0.5;
+  display: none;
 }
 
+aside:hover [alt^="Tog"] {
+  display: block;
+}
 
 /* Teams Section (3/3) */
 
 /* Teams Content */
-/* Main position for ALL ICON position */
 
 .teams {
   position: relative;
@@ -391,18 +470,15 @@ div.line {
 
 /* Teams List */
 
-.teams > ul {
-  margin-top: 15px;
+ul {
+  margin-top: 5px;
 }
 
-/* The padding makes the list-style-type: not appear, so I removed it */
-
-.teams > ul > li {
-  height: 30px;
+.teams li {
+  line-height: 30px;
   padding: 0 43px;
-  /* list-style-type: none; */
+  list-style-type: none;
 }
-
 
 /* Icons sizes and config => No position yet */
 
@@ -418,7 +494,7 @@ div.line {
 /* Created little padding test in "+" Icon, to make it like a "button" (bigger and square) */
 
 [alt$="Iconp"] {
-  padding: 10px;
+  padding: 9px;
 }
 
 /* Ridiculous way to make the "---"(three rows) icon smaller */
@@ -429,14 +505,11 @@ div.line {
   object-fit: cover;
 }
 
-
-
-/* Icon Position and Free Button Layout */
-
+/* Icons Position (and Free Button Layout) */
 
 [alt*="Square"] {
   position: absolute;
-  top: 53px;
+  top: 51px;
   left: 23px;
 }
 
@@ -445,7 +518,7 @@ div.line {
 .free_button {
   box-sizing: content-box;
   position: absolute;
-  top: 49px;
+  top: 48px;
   left: 143px;
   width: 30px;
   height: 16px;
@@ -456,30 +529,58 @@ div.line {
   border-radius: 3px;
 }
 
-
 [alt*="Plus1"] {
   position: absolute;
   top: 41px;
   right: 18px;
+  display: none;
 }
 
 [alt^="Team"] {
   position: absolute;
-  top: 85px;
+  top: 82px;
   left: 6px;
+  display: none;
 }
+
+/* Opacity instead of display none, to be able to hover the icon */
 
 [alt*="Plus2"] {
   position: absolute;
-  top: 72px;
+  top: 71px;
   right: 18px;
+  opacity: 0;
 }
 
 [alt^="Add"] {
   position: absolute;
-  top: 110px;
-  left: 20px;
+  top: 108px;
+  left: 19px;
 }
+
+/* Actions (In Order) */
+
+ul li:hover {
+  background-color: var(--fig-jam-background);
+}
+
+ul li:hover [alt*="Plus1"], ul li:hover [alt*="Team"] {
+  display: block;
+}
+
+/* Free button */
+
+.free_button:hover {
+  background-color: #72c7ff80;
+}
+
+/* Plus Icon */
+
+[alt*="Plus1"]:hover, [alt*="Plus2"]:hover {
+  background-color: var(--background-close-window);
+  opacity: 1;
+}
+
 
 
 /* Main */
@@ -540,8 +641,6 @@ main nav > h3 {
 /* Flex with space-between and flex-grow combination again <3 */
 
 .new_file_container > div {
-  /* width: 315px; */
-  /* min-width: 270px; */
   height: 75px;
   display: flex;
   justify-content: space-between;
@@ -549,6 +648,7 @@ main nav > h3 {
   padding: 10px;
   border: 1px solid var(--aside-line-separator);
   border-radius: 5px;
+  transition: background-color 0.2s ease-in-out;
 }
 
 /* Text Description */
@@ -589,6 +689,12 @@ img[alt^="More"] {
   margin: 0 10px;
 }
 
+/* Actions */
+
+.new_file_container > div:hover {
+  background-color: var(--fig-jam-background);
+}
+
 
 /* Explore FigJam Templates (2/3) */
 
@@ -608,11 +714,10 @@ img[alt^="More"] {
 /* Text Menu Container */
 
 .fig_text_menu {
-  margin: 10px 0px;
   position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  margin: 10px 0px;
 }
 
 .fig_text_menu > h3 {
@@ -622,7 +727,7 @@ img[alt^="More"] {
 
 .fig_text_menu > p {
   position: absolute;
-  right: 50px;
+  right: 47px;
   font-size: 11px;
   font-weight: 500;
   color: var(--see-all-text);
@@ -632,21 +737,27 @@ img[alt^="More"] {
 
 .fig_text_menu > span {
   position: absolute;
-  right: 32px;
+  right: 30px;
   width: 1px;
   height: 33px;
   background-color: var(--aside-line-separator);
 }
 
-/* Close Icon */
-/* Same Icon as the "+" icon but rotated 45deg with the transform-box and transform-origin properties => X Icon */
+/* Close Window Icon */
 
 .fig_text_menu > img {
-  width: 18px;
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: rotate(45deg);
+  position: absolute;
+  right: -10px;
+  width: 32px;
+  padding: 6px;
   opacity: 0.7;
+}
+
+/* Actions */
+
+.fig_text_menu > img:hover {
+  background-color: var(--background-close-window);
+  border-radius: 3px;
 }
 
 
@@ -724,7 +835,6 @@ Difference from Padding and Vertical Gap ( 0 25px ) really obvious here */
   opacity: 1;
 }
 
-
 /* Project Section (3/3) */
 
 
@@ -738,8 +848,7 @@ section > nav {
 /* Main Container */
 
 .select_div {
-  padding-right: 15px;
-  max-width: 95%;
+  /* max-width: 100%; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -748,11 +857,12 @@ section > nav {
 }
 
 
-/* Filter Text (Left Side => "Select") */
+/* Filter Menu */
 
-/* Filter Text */
+/* Both Menus initial config */
 
-.filter > span:last-of-type {
+.filter > span:last-of-type,
+.sort > span:last-of-type {
   margin: 0px 4px;
   color: black;
 }
@@ -764,16 +874,14 @@ section > nav {
   position: absolute;
   left: 35px;
   width: 60px;
-  z-index: 1;
+  /* z-index: 1; */
   opacity: 0;
 }
 
 /* Filter Menu */
 
 .left_menu {
-  position: fixed;
-  bottom: 264px;
-  left: 308px;
+  position: sticky;
   padding: 8px 0px;
   width: 160px;
   font-size: 12px;
@@ -782,7 +890,6 @@ section > nav {
   border-radius: 2px;
   cursor: default;
   display: none;
-  z-index: 1;
 }
 
 /* Inside Text */
@@ -810,18 +917,22 @@ img[alt="Fi_Check_Icon"] {
   background-color: var(--free-button-font);
 }
 
+/* Amazing way to make my sticky menu not move other elements when it appears */
+
 .filter-input:checked ~ .left_menu {
   display: block;
+  position: absolute;
+  top: 25px;
+  left: 35px;
 }
 
 
-/* Sort Config (Right Side => "Select") */
+/* Sort Menu */
 
-/* Sort Text */
+/* Set the middle flex item, to the right, with margin-left: auto */
 
-.sort > span:last-of-type {
-  margin: 0px 4px;
-  color: black;
+.sort {
+  margin: 0px 20px 0px auto;
 }
 
 /* Checkbox Input */
@@ -837,9 +948,7 @@ img[alt="Fi_Check_Icon"] {
 /* Sort Menu */
 
 .right_menu {
-  position: fixed;
-  bottom: 171px;
-  right: 45px;
+  position: sticky;
   width: 160px;
   font-size: 12px;
   color: white;
@@ -903,18 +1012,12 @@ img[alt="Check_Icon"] {
 
 .sort-input:checked ~ .right_menu {
   display: block;
-}
-
-
-/* Filters Icons (Right part) */ 
-
-/* Block Position */
-
-.select_icons {
   position: absolute;
-  top: -6px;
-  right: 0;
+  top: 25px;
+  right: 5px;
 }
+
+/* Filters Icons */ 
 
 /* Icons Initial Config */
 
@@ -995,11 +1098,17 @@ input.b:hover ~ .three {
 
 .library {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-rows: 240px 240px;
   gap: 35px;
   padding: 23px 30px;
   margin-top: 12px;
+}
+
+/* Invisible Container to create more scroll space in the responsive version */
+
+.invisible {
+  visibility: hidden;
 }
 
 /* Project Container */
@@ -1007,22 +1116,17 @@ input.b:hover ~ .three {
 /* Display flex only for the image container flex grow property to work */
 
 .projects {
-  display: flex;
-  flex-direction: column;
-  height: 230px;
   border: 1px solid var(--aside-line-separator);
   border-radius: 6px;
-  /* overflow: hidden; */
 }
-
 
 /* Div Container of the image */
 
 .image_project_container {
-  flex-grow: 1;
+  max-width: 100%;
+  height: 180px;
   overflow: hidden;
 }
-
 
 .image_project_container > img {
   width: 100%;
@@ -1030,15 +1134,14 @@ input.b:hover ~ .three {
   object-fit: cover;
 }
 
-/* Last Block Image => Object-fit: contain; to make the image fit the container as in the example; + background color */
+/* Last Image => Object-fit: contain; to make the image fit the container as in the example; + background color */
 
 #imgthree {
   background-color: var(--background-color-figma-basics);
   object-fit: contain;
 }
 
-
-/* Text Box => Used (.text_description) parameters from main > nav ; + these parameters */
+/* Text Config => Used (.text_description) parameters from main > nav ; + these parameters */
 
 .project_description {
   position: relative;
@@ -1047,31 +1150,29 @@ input.b:hover ~ .three {
   padding: 0 10px;
 }
 
-
 /* Favorite Icon */
 
-/* Couldn't check the star icon behind the SVC icon, so I used Z-Index to have it first plan, but not visible */
+/* Input => Couldn't check the star icon behind the SVC icon, so I used Z-Index to have it first plan, but not visible */
 
 .project_description input {
   position: absolute;
   right: 22px;
-  bottom: 16px;
+  bottom: 15px;
   z-index: 1;
   opacity: 0;
 }
 
-/* Fav Icon */
+/* Fav Icon Position */
 
 svg.fav {
   position: absolute;
   right: 18px;
-  bottom: 13px;
+  bottom: 12px;
   width: 21px;
   height: 21px;
   opacity: 0.4;
   visibility: hidden;
 }
-
 
 /* "Actions" */ 
 
@@ -1110,7 +1211,7 @@ svg.fav {
   justify-content: center;
   align-items: center;
   bottom: 20px;
-  right: 26px;
+  right: 29px;
   width: 36px;
   height: 36px;
   border-radius: 50%;

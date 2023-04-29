@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="./Assets/Figma-Favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./Assets/Luca G.png" type="image/x-icon">
   <link rel="stylesheet" href="./styles.css" />
-  <title>Copy by L. Giro</title>
+  <title>Recently viewed - Figma</title>
 </head>
 
 <body>
@@ -32,9 +32,13 @@
         <h3>Explore Community</h3>
       </nav>
       <div class="uppercase_profile">
-        <img class="icon_nav" src="./Assets/Notification.svg" alt="Notification_Icon">
-        <span>G</span>
-        <img class="icon_nav" src="./Assets/Arrow Down Menu.svg" alt="Arrow_Select_Menu2">
+        <div>
+          <img class="icon_nav" src="./Assets/Notification.svg" alt="Notification_Icon">
+        </div>
+        <div>
+          <span>G</span>
+          <img class="icon_nav" src="./Assets/Arrow Down Menu.svg" alt="Last_Arrow">
+        </div>
       </div>
     </div>
   </header>
@@ -64,15 +68,21 @@
       <img src="./Assets/Toogle.svg" alt="Toggle_Icon">
       <h4>Teams</h4>
       <ul>
-        <img src="./Assets/Green Square.svg" alt="Square_Icon">
-        <li>Giro Luca's team</li>
-        <button class="free_button">Free</button>
-        <img src="./Assets/Add_more.svg" alt="Plus1_Add_Iconp">
-        <img src="/Assets/Team Project.svg" alt="Team_Project_Icon">
-        <li>Team project</li>
-        <img src="./Assets/Add_more.svg" alt="Plus2_Add_Iconp">
-        <img src="./Assets/Create_new_team.svg" alt="Add_Team_Icon">
-        <li>Create new team</li>
+        <li>
+          <img src="./Assets/Green Square.svg" alt="Square_Icon">
+          <p>Giro Luca's team</p>
+          <button class="free_button">Free</button>
+          <img src="./Assets/Add_more.svg" alt="Plus1_Add_Iconp">
+        </li>
+        <li>
+          <img src="/Assets/Team Project.svg" alt="Team_Project_Icon">
+          <p>Team project</p>
+          <img src="./Assets/Add_more.svg" alt="Plus2_Add_Iconp">
+        </li>
+        <li>
+          <img src="./Assets/Create_new_team.svg" alt="Add_Team_Icon">
+          <p>Create new team</p>
+        </li>
       </ul>
     </section>
   </aside>
@@ -111,7 +121,7 @@
           <h3>Explore FigJam templates</h3>
           <p>See all</p>
           <span class="line_separator_figjam"></span>
-          <img src="./Assets/Create_new_team.svg" alt="Close_FigJam_Menu">
+          <img src="./Assets/window-close-svgrepo-com.svg" alt="Close_FigJam_Menu">
         </div>
         <div class="list_template">
           <div>
@@ -193,23 +203,23 @@
             </div>
             <img src="./Assets/Arrow Down Menu.svg" alt="Arrow_Select_Icon">
           </div>
-        </div>
-        <div class="select_icons">
-          <input class="a" type="checkbox" />
-          <svg class="four" xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="arcs">
-            <rect x="3" y="3" width="7" height="7"></rect>
-            <rect x="14" y="3" width="7" height="7"></rect>
-            <rect x="14" y="14" width="7" height="7"></rect>
-            <rect x="3" y="14" width="7" height="7"></rect>
-          </svg>
-          <input class="b" type="checkbox" />
-          <svg class="three" xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="arcs">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
+          <div class="select_icons">
+            <input class="a" type="checkbox" />
+            <svg class="four" xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="arcs">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <input class="b" type="checkbox" />
+            <svg class="three" xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="arcs">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </div>
         </div>
       </nav>
       <article class="library">
@@ -252,6 +262,25 @@
           </div>
         </div>
         <div class="projects">
+          <div class="image_project_container">
+            <img id="imgthree" src="./Assets/Lib3.png" alt="Figma Basics">
+          </div>
+          <div class="project_description">
+            <img src="./Assets/Design-FIle.png" alt="Design_Icon">
+            <div class="text_description">
+              <h4>Figma Basics</h4>
+              <p>In Drafts · Edited 5 days ago</p>
+            </div>
+            <input class="star" type="checkbox" />
+            <svg class="fav" xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1" stroke-linecap="butt" stroke-linejoin="arcs">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+              </polygon>
+            </svg>
+          </div>
+        </div>
+        <div class="invisible">
           <div class="image_project_container">
             <img id="imgthree" src="./Assets/Lib3.png" alt="Figma Basics">
           </div>

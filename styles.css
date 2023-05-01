@@ -422,18 +422,17 @@ img[alt="Scroll_Check"] {
 /* Main Flex Container */
 
 /* The height needs to be a fix one for the container line to go till the end */
+/* Needed to go into a div for the hamburger menu to work (input coherence order) */
 
-aside {
+.aside-menu {
   display: flex;
   flex-direction: column;
-  width: 242px;
+  max-width: 242px;
   min-height: 100vh;
   font-size: 0.7rem;
   border-right: 1px solid var(--aside-line-separator);
   overflow: visible;
-  opacity: 1;
 }
-
 
 /* First Top Part (1/3) */ 
 /* Important => Better to set padding to elements instead of main container */
@@ -744,38 +743,72 @@ main nav div > h3 {
   margin-left: 13px;
 }
 
-/* Burger And Responsive Import Icon Position */
+/* Hamburger, Close And Import Icon Position for Responsive (Hidden in Desktop mode) */
 
-[alt^="Ham"] {
+[alt^=Clo] {
   position: absolute;
-  top: 10px;
+  top: 60px;
+  left: 10px;
+  width: 32px;
+  padding: 6px;
+  z-index: 4000;
+  display: none;
+}
+
+.recently img {
   left: 13px;
   width: 32px;
   padding: 6px;
   display: none;
 }
 
-/* Testing Hamb Input */
+ [alt^="Ham"] {
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  width: 32px;
+  padding: 6px;
+  display: none;
+  z-index: 4000;
+}
+
+
+/* Hamburger Hidden Input for Mobile version */
 
 .miam {
   position: absolute;
-  top: 8px;
+  top: 60px;
   left: 15px;
   width: 32px;
   height: 32px;
   opacity: 0;
-  z-index: 5;
+  z-index: 4001;
 }
 
-.recently img:last-child {
-  display: none;
+/* Created a second input in the .recently just to keep the :hover effect on the icon, and for the action below to work */
+/* Not activated, the one who opens the menu is the input above the .aside-menu div HTML */
+
+.recently > .miam {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 70px;
+  height: 70px;
+  opacity: 0;
+  z-index: 1;
 }
+
 
 /* Actions */
 
-.recently input:hover ~ [alt^="Ham"] {
+.recently img:hover {
   background-color: var(--fig-jam-background);
-  border-radius: 1px;
+  border-radius: 2px;
+}
+
+.miam:hover + img {
+  background-color: var(--fig-jam-background);
+  border-radius: 2px;
 }
 
 
@@ -1492,6 +1525,7 @@ svg.fav {
 
 @media only screen and (max-width: 645px) {
 
+
 /* Header */
 
 .profile_info {
@@ -1521,27 +1555,56 @@ svg.fav {
 
 .topuno {
   position: fixed;
-  left: 35px;
+  left: 40px;
+  width: 15px;
+  opacity: 0;
 }
 
 /* Aside */
 
-/* Hamburger Menu... */
+/* Hamburger Menu */
 
-aside {
+/* Slide in and out the menu */
+
+.aside-menu {
+  position: absolute;
+  top: 101px;
+  left: -250px;
+  z-index: 5555;
+  background-color: var(--white-font);
+  transition: left 0.3s ease-in-out;
+}
+
+.miam:checked ~ .aside-menu {
   position: absolute;
   top: 101px;
   left: 0px;
   z-index: 5555;
-  background-color: var(--white-font);
-  opacity: 0;
 }
 
-.miam:checked ~ aside {
-  opacity: 1;
+/* Icons and Burger Menu */
+
+[alt^="Ham"] {
+  display: block;
 }
+
+.recently > img {
+  display: block;
+}
+
+/* Icons switch */
+
+.miam:checked ~ [alt^="Ham"] {
+  display: none;
+}
+
+.miam:checked ~ [alt^="Clo"] {
+  display: block;
+}
+
 
 /* Main */
+
 /* Repositioning the main container to the left */
 
 /* Main position */
@@ -1552,17 +1615,8 @@ main {
   left: 0;
 }
 
-/* Icons and Burger Menu */
 
-
-.recently > img {
-  display: block;
-}
-
-.recently img:last-child {
-  display: block;
-}
-
+/* Text */
 
 .recently h3 {
   padding-left: 30px;
@@ -1577,11 +1631,6 @@ main > nav p {
 
 /* New File, import and Figjam hidden */
 
-/* Removed Padding Bottom */
-
-.new_file_container {
-  padding-bottom: 0px;
-}
 
 .new_file_container div:last-child {
   display: none;
@@ -1621,7 +1670,6 @@ main > nav p {
 
 
   /* Main */
-
 
 /* Removed Padding Bottom */
 

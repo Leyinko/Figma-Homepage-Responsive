@@ -10,6 +10,10 @@
   user-select: none;
 }
 
+input {
+  cursor: pointer;
+}
+
 :root {
 
   /* Header Colors */
@@ -166,10 +170,9 @@ header {
 
 .topuno {
   position: absolute;
-  top: 0px;
+  top: 10px;
   left: 210px;
-  width: 30px;
-  height: 50px;
+  height: 30px;
   opacity: 0;
 }
 
@@ -253,8 +256,9 @@ img[alt="Scroll_Check"] {
 /* The height inherit is for the little border separator detail; so the border reach the whole header */
 
 .search_container {
+  position: relative;
   min-width: 150px;
-  height: inherit;
+  height: 100%;
   flex-grow: 1;
   display: flex;
   align-items: center;
@@ -298,6 +302,42 @@ img[alt="Scroll_Check"] {
   cursor: text;
 }
 
+
+/* Suggestions Menu */
+
+/* Finally understood the min-width and max-width with the width 100% */
+
+.suggestions {
+  position: absolute;
+  top: 50px;
+  left: 15px;
+  width: 100%;
+  max-width: 385px;
+  min-width: 320px;
+  padding-bottom: 10px;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.808);
+  background-color: var(--white-font);
+  z-index: 2;
+  display: none;
+}
+
+/* Container */
+
+.suggestions > p {
+  font-size: 11px;
+  padding: 17px 0px 10px 15px;
+}
+
+.selection-sugg > .project_description {
+  display: flex;
+  align-items: center;
+  height: 55px;
+  padding: 0px 10px;
+  margin: 0;
+}
+
 /* Actions */
 
 /* Hover and :not => To avoid the hover effect when the input is focused */
@@ -311,6 +351,14 @@ img[alt="Scroll_Check"] {
 
 .search_box:focus-within {
   outline: 0.6px solid var(--filters-icon-selected);
+}
+
+.search_box:focus-within ~ .suggestions {
+  display: block;
+}
+
+.suggestions .project_description:hover {
+  background-color: var(--fig-jam-background);
 }
 
 
@@ -743,35 +791,37 @@ main nav div > h3 {
   margin-left: 13px;
 }
 
+
 /* Hamburger, Close And Import Icon Position for Responsive (Hidden in Desktop mode) */
 
-[alt^=Clo] {
-  position: absolute;
-  top: 60px;
-  left: 10px;
+/* Hamburger Icon */
+
+aside > img {
   width: 32px;
   padding: 6px;
   z-index: 4000;
   display: none;
 }
 
-.recently img {
-  left: 13px;
-  width: 32px;
-  padding: 6px;
-  display: none;
+[alt^=Clo] {
+  position: absolute;
+  top: 60px;
+  left: 10px;
 }
 
  [alt^="Ham"] {
   position: absolute;
   top: 60px;
   left: 10px;
+}
+
+/* Import Icon */
+
+.recently img {
   width: 32px;
   padding: 6px;
   display: none;
-  z-index: 4000;
 }
-
 
 /* Hamburger Hidden Input for Mobile version */
 
@@ -785,20 +835,6 @@ main nav div > h3 {
   z-index: 4001;
 }
 
-/* Created a second input in the .recently just to keep the :hover effect on the icon, and for the action below to work */
-/* Not activated, the one who opens the menu is the input above the .aside-menu div HTML */
-
-.recently > .miam {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 70px;
-  height: 70px;
-  opacity: 0;
-  z-index: 1;
-}
-
-
 /* Actions */
 
 .recently img:hover {
@@ -806,7 +842,7 @@ main nav div > h3 {
   border-radius: 2px;
 }
 
-.miam:hover + img {
+.miam:hover ~ img {
   background-color: var(--fig-jam-background);
   border-radius: 2px;
 }
@@ -1402,6 +1438,7 @@ svg.fav {
   height: 36px;
   border-radius: 50%;
   background-color: var(--footer-help-background);
+  z-index: 6666;
 }
 
 .help > p {
@@ -1463,9 +1500,7 @@ svg.fav {
   display: none;
 }
 
-
 /* Menu Text Configuration */
-
 
 /* This part has been really tricky; understood the huge importance between => Naming a class with "_" and "-"
    And the practical use of a group selector! */
@@ -1520,7 +1555,6 @@ svg.fav {
 
 /* Media Queries */
 
-
 /* Mobile Responsive */
 
 @media only screen and (max-width: 645px) {
@@ -1551,7 +1585,7 @@ svg.fav {
   padding: 15px;
 }
 
-/* Input Left */
+/* Input Left re-sizing */
 
 .topuno {
   position: fixed;
@@ -1560,11 +1594,10 @@ svg.fav {
   opacity: 0;
 }
 
+
 /* Aside */
 
-/* Hamburger Menu */
-
-/* Slide in and out the menu */
+/* Hamburger Menu => Slide in and out */
 
 .aside-menu {
   position: absolute;
@@ -1592,7 +1625,7 @@ svg.fav {
   display: block;
 }
 
-/* Icons switch */
+/* Icons switch (Hamburger & Close) */
 
 .miam:checked ~ [alt^="Ham"] {
   display: none;
@@ -1607,14 +1640,11 @@ svg.fav {
 
 /* Repositioning the main container to the left */
 
-/* Main position */
-
 main {
   position: absolute;
   z-index: 1;
   left: 0;
 }
-
 
 /* Text */
 
@@ -1628,9 +1658,7 @@ main > nav p {
   display: none;
 }
 
-
 /* New File, import and Figjam hidden */
-
 
 .new_file_container div:last-child {
   display: none;
@@ -1641,11 +1669,6 @@ main > nav p {
 }
 }
 
-/* Footer */ 
-
-.help {
-  z-index: 6666;
-}
 
 /* Tablet Responsive */
 
@@ -1677,7 +1700,6 @@ main > nav p {
   padding-bottom: 0px;
 }
 
-
 /* New Files Descriptions */
 
 .recently img:last-child {
@@ -1687,7 +1709,6 @@ main > nav p {
 main > nav p {
   display: none;
 }
-
 
 .new_file_container div:last-child {
   display: none;

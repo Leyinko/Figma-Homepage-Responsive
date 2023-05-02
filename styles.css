@@ -10,9 +10,13 @@
   user-select: none;
 }
 
+/* All the "interactive" elements will have a pointer cursor */
+
 input {
   cursor: pointer;
 }
+
+/* Color Library */
 
 :root {
 
@@ -52,24 +56,22 @@ input {
 }
 
 /* The only way I found to hide all the scroll bars; horizontal and vertical */
-/* Changes in <main> container */
 
 body {
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
   overflow: hidden;
 }
 
 
-/* Header Container */
+
+/* Header */
 
 /* Icons Config => Filter BLACK to WHITE for SVG icons */
 
 .icon_nav {
   filter: invert(100%) sepia(0%) saturate(7494%) hue-rotate(173deg) brightness(103%) contrast(99%);
 }
-
-/* Header */
 
 /* Display flex in the whole header to arrange horizontally the 3 main containers => 
    Space between to make the left and right profile section stick on the edges, the flex-grow: 1 will make the search bar stick to the left! */
@@ -78,8 +80,6 @@ body {
 
 header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding-right: 13px;
   height: 50px;
   color: var(--white-font);
@@ -1698,6 +1698,19 @@ svg.fav {
   margin: 8px 0px;
  }
 
+/* Little hidden link of the repository wink wink */
+
+.help-menu a {
+  user-select: auto;
+  text-decoration: none;
+  color: white;
+  width: 145px;
+  line-height: 25px;
+  text-align: left;
+  padding-left: 13px;
+  cursor: pointer;
+}
+
 /* "Actions" => :hover for message, and check/uncheck for the menu */
 
 .help:hover span {
@@ -1712,7 +1725,8 @@ svg.fav {
   display: block;
 }
 
-.help-menu p:hover {
+.help-menu p:hover,
+.help-menu a:hover {
   background-color: var(--free-button-font);
 }
 
@@ -1739,7 +1753,7 @@ svg.fav {
   min-width: 80px;
 }
 
-/* Scroll and clip path */
+/* Scroll left and clip path */
 
 .scrollone {
   z-index: 3;

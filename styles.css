@@ -1740,10 +1740,14 @@ svg.fav {
   min-width: 80px;
 }
 
-/* Top Left menu and clip path re-position */
+/* Top Menus Z-Index and left menu clip path re-position */
 
 .scrollone {
-  z-index: 3;
+  z-index: 9999;
+}
+
+.scrolltwo {
+  z-index: 9999;
 }
 
 .clip_top_left {

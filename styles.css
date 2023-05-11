@@ -1733,6 +1733,10 @@ svg.fav {
   display: inline;
 }
 
+.profile_container > img:first-of-type {
+  position: absolute;
+  top: 10px;
+}
 /* Input */
 
 .topuno {
@@ -1756,12 +1760,26 @@ svg.fav {
   left: 39px;
 }
 
+/* Search Bar */
+
+.search_box > img {
+  display: none;
+}
+
+.search_box > input {
+  width: 100%;
+  padding: 0px 10px;
+  border-radius: 8px;
+}
+
+
 /* Explore and Notification */
 
 .mini_profile_right {
   width: 100%;
   flex-grow: 1;
   min-width: auto;
+  max-width: min-content;
 }
   
 .mini_profile_right > nav {
